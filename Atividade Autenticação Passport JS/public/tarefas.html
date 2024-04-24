@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de Tarefas</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h2> Lista de Tarefas</h2>
+<form>
+    <input type="text" id="novaTarefaInput" placeholder="Adicione uma nova tarefa"> <br><br>
+    <button class = "btAdd"onclick="adicionarTarefa()">Adicionar</button>
+</form>
+<script>
+    function adicionarTarefa() {
+        var input = document.getElementById('novaTarefaInput');
+        var novaTarefa = input.value.trim();
+
+        if (novaTarefa) {
+            fetch('/adicionarTarefa', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'novaTarefa=' + encodeURIComponent(novaTarefa)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error(data.error);
+                } else {
+                    var li = document.createElement('li');
+                    var textoTarefa = document.createTextNode(data.tarefa);
+                    var botaoRemover = document.createElement('button');
+
+                    botaoRemover.textContent = 'Remover';
+                    botaoRemover.onclick = function() {
+                        this.parentElement.remove();
+                    };
+
+                    li.appendChild(textoTarefa);
+                    li.appendChild(botaoRemover);
+
+                    document.getElementById('listaTarefas').appendChild(li);
+                    input.value = '';
+                    console.log(data.status);
+                }
+            })
+            .catch(error => console.error('Erro:', error));
+        }
+    }
+</script>
+
+<ol id="listaTarefas"></ol>
+
+<script src="scripts.js"></script>
+
+</body>
+</html>

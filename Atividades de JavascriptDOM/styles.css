@@ -1,0 +1,14 @@
+body {
+  font-family: Arial, sans-serif;
+}
+.tarefa-concluida {
+  text-decoration: line-through;
+}
+h2{
+  color:blueviolet;
+}
+button{
+  color:white;
+  background-color: blueviolet;
+  margin-left: 10px;
+}

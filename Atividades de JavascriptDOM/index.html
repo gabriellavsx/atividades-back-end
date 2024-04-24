@@ -1,0 +1,27 @@
+<!-- Crie uma aplicação de lista de tarefas onde o usuário pode adicionar novas tarefas, marcá-las como concluídas 
+e removê-las da lista. Utilize HTML para a estrutura da lista, CSS para o estilo e JavaScript para manipular o DOM.
+Implemente funcionalidades como adicionar uma nova tarefa, marcar uma tarefa como concluída (através de um clique
+e remover uma tarefa da lista.-->
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de Tarefas</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h2> Lista de Tarefas</h2>
+
+<input type="text" id="novaTarefaInput" placeholder="Adicione uma nova tarefa"> <br><br>
+<button class = "btAdd"onclick="adicionarTarefa()">Adicionar</button>
+
+<ol id="listaTarefas"></ol>
+
+<script src="scripts.js"></script>
+
+</body>
+</html>
+
